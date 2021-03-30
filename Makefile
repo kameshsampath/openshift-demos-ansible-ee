@@ -8,6 +8,10 @@ buildee:
 	@ansible-builder build -f $(BUILDER_EE_FILE) --tag $(ANSIBLE_RUNNER_IMAGE) \
        --container-runtime $(CONTAINER_RUNTIME)
 
+.PHONY:	push
+push:	buildee
+	@$(CONTAINER_RUNTIME) push $(ANSIBLE_RUNNER_IMAGE)
+
 .PHONY:	prechecks
 prechecks:
 ifeq ($(shell test -e $(KUBECONFIG) && echo "yes" ),yes)
