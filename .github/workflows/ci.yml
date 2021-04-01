@@ -52,5 +52,5 @@ jobs:
           podman tag $IMAGE_TAG $IMAGE_LATEST
           podman push $IMAGE_LATEST
         env:
-          IMAGE_TAG: "${{ secrets.QUAYIO_REPO }}/${{ env.IMAGE_NAME }}:${{ release.tag_name }}"
+          IMAGE_TAG: "${{ secrets.QUAYIO_REPO }}/${{ env.IMAGE_NAME }}:${{ steps.release.outputs.tag_name }}"
           IMAGE_LATEST: "${{ secrets.QUAYIO_REPO }}/${{ env.IMAGE_NAME }}:latest"
