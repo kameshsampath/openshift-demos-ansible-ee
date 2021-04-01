@@ -15,10 +15,11 @@ jobs:
       - name: Checkout
         id: git_checkout
         uses: actions/checkout@v2
+      # TODO add step for ansible builder ee
 
-      - name: Build the Action Image
+      - name: Build the Ansible EE Image
         id: build-image
-        uses: redhat-actions/buildah-build@v1
+        uses: redhat-actions/buildah-build@v2
         with:
           image: "${{ env.IMAGE_NAME }}"
           dockerfiles: |
