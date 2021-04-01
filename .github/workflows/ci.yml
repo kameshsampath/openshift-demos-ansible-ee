@@ -1,4 +1,4 @@
-name: CI
+name: Build and Release Ansible EE
 
 on:
   push:
@@ -9,47 +9,52 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     env:
+<<<<<<< HEAD
       IMAGE_NAME: openshift-demos-ansible-ee
       IMAGE_TAGS: latest
+=======
+      IMAGE_NAME: quay.io/kameshsampath/openshift-demos-ansible-ee
+>>>>>>> 9c11b3a (remove context and build with ansible builder)
     steps:
       - name: Checkout
         id: git_checkout
         uses: actions/checkout@v2
       # TODO add step for ansible builder ee
 
-      - name: Build the Ansible EE Image
-        id: build-image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: "${{ env.IMAGE_NAME }}"
-          dockerfiles: |
-            ./context/Dockerfile
-          context: ./context
-          tags: "${{ env.IMAGE_TAGS }}"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
 
-      - name: Push to GHCR
-        id: push-to-ghcr
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ${{ steps.build-image.outputs.image }}
-          tags: ${{ steps.build-image.outputs.tags }}
-          registry: ghcr.io/kameshsampath
-          username: kameshsampath
-          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-      - name: Push To Quay
-        id: push-to-quay
-        uses: redhat-actions/push-to-registry@v2
+      # - uses: GoogleCloudPlatform/release-please-action@v2.24.1
+      #   id: release
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     release-type: simple
+      #     bump-minor-pre-major: true
+
+      - uses: actions/setup-python@v1
+        #if: ${{ release.release_created }}
+      - uses: BSFishy/pip-action@v1
+        #if: ${{ release.release_created }}
         with:
-          image: ${{ steps.build-image.outputs.image }}
-          tags: ${{ steps.build-image.outputs.tags }}
-          registry: ${{ secrets.QUAY_REPO }}
+          packages: |
+            ansible-builder
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v1
+        #if: ${{ release.release_created }}
+        with:
+          registry: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_TOKEN }}
+          logout: true
 
-      - uses: GoogleCloudPlatform/release-please-action@v2.7.0
-        id: release
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: simple
-          bump-minor-pre-major: true
+      - name: Build the Ansible EE Image
+        id: build-image
+        #if: ${{ release.release_created }}
+        run: |
+          ansible-builder build --tag \
+             "${{ env.IMAGE_NAME }}:latest"
+          docker push "${{ env.IMAGE_NAME }}:latest"
