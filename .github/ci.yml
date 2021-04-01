@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: kameshsampath/openshift-demos-ansible-ee
+      IMAGE_TAGS: latest
+    steps:
+      - name: Checkout
+        id: git_checkout
+        uses: actions/checkout@v2
+
+      - name: Build the Action Image
+        id: build-image
+        uses: redhat-actions/buildah-build@v1
+        with:
+          image: { { env.IMAGE_NAME } }
+          dockerfiles: |
+            ./context/Dockerfile
+          tags: { { env.IMAGE_TAGS } }
+
+      - name: Push to GHCR
+        id: push-to-ghcr
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ghcr.io/kameshsampath
+          username: kameshsampath
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push To Quay
+        id: push-to-quay
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ${{ secrets.QUAY_REPO }}
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_TOKEN }}
+
+      - uses: GoogleCloudPlatform/release-please-action@v2.7.0
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: simple
+          bump-minor-pre-major: true
