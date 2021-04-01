@@ -4,7 +4,7 @@ export $(shell sed 's/=.*//' ${ENV_FILE})
 CURRENT_DIR = $(shell pwd)
 
 .PHONY:
-buildee:	buildee
+buildee:
 	@ansible-builder build -f $(BUILDER_EE_FILE) --tag $(ANSIBLE_RUNNER_IMAGE) \
        --container-runtime $(CONTAINER_RUNTIME)
 
