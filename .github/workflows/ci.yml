@@ -9,12 +9,8 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     env:
-<<<<<<< HEAD
       IMAGE_NAME: openshift-demos-ansible-ee
       IMAGE_TAGS: latest
-=======
-      IMAGE_NAME: quay.io/kameshsampath/openshift-demos-ansible-ee
->>>>>>> 9c11b3a (remove context and build with ansible builder)
     steps:
       - name: Checkout
         id: git_checkout
