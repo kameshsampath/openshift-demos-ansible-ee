@@ -2,7 +2,7 @@
 version: 1
 
 build_arg_defaults:
-  ANSIBLE_RUNNER_IMAGE: 'quay.io/ansible/ansible-runner:stable-2.11-devel'
+  ANSIBLE_RUNNER_IMAGE: "quay.io/ansible/ansible-runner:stable-2.11-devel"
 
 # ansible_config: 'ansible.cfg'
 
@@ -14,8 +14,7 @@ additional_build_steps:
   prepend: |
     RUN dnf -y --nodocs install wget curl tar unzip openssl jq
     RUN cd /tmp
-    RUN wget -Oopenshift-client-linux.tar.gz https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable-4.7/openshift-client-linux.tar.gz
-    RUN tar --exclude='README.md' -C /usr/local/bin  -zxf openshift-client-linux.tar.gz
+    RUN wget  -c https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable-4.7/openshift-client-linux.tar.gz -O - | tar --exclude='README.md' -C /usr/local/bin  -zx
     RUN wget -Oawscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
     RUN unzip awscliv2.zip
     RUN ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
