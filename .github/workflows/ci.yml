@@ -33,7 +33,7 @@ jobs:
             ansible-builder
 
       - name: Login to Quay.io
-        uses: redhat-actions/podman-login@master
+        uses: docker/login-action@v1
         #if: ${{ release.release_created }}
         with:
           registry: quay.io
