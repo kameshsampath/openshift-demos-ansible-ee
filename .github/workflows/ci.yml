@@ -43,9 +43,8 @@ jobs:
         #if: ${{ release.release_created }}
         with:
           registry: quay.io
-          username: "${{ secrets.QUAY_USERNAME }}"
-          password: "${{ secrets.QUAY_TOKEN }}"
-          logout: true
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_TOKEN }}
 
       - name: Build the Ansible EE Image
         id: build-image
