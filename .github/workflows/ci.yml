@@ -9,7 +9,7 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: kameshsampath/openshift-demos-ansible-ee
+      IMAGE_NAME: openshift-demos-ansible-ee
       IMAGE_TAGS: latest
     steps:
       - name: Checkout
