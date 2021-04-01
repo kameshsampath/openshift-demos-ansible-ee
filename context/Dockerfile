@@ -18,8 +18,7 @@ RUN assemble
 FROM $ANSIBLE_RUNNER_IMAGE
 RUN dnf -y --nodocs install wget curl tar unzip openssl jq
 RUN cd /tmp
-RUN wget -Oopenshift-client-linux.tar.gz https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable-4.7/openshift-client-linux.tar.gz
-RUN tar --exclude='README.md' -C /usr/local/bin  -zxf openshift-client-linux.tar.gz
+RUN wget  -c https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable-4.7/openshift-client-linux.tar.gz -O - | tar --exclude='README.md' -C /usr/local/bin  -zx
 RUN wget -Oawscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 RUN unzip awscliv2.zip
 RUN ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update

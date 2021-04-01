@@ -8,5 +8,4 @@ collections:
 roles:
   - name: kameshsampath.rosa_demos
     src: https://github.com/kameshsampath/ansible-role-rosa-demos
-    version: v0.0.1
-    
+    version: v0.0.2
