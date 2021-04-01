@@ -45,5 +45,7 @@ jobs:
         id: build-image
         #if: ${{ release.release_created }}
         run: |
-          ansible-builder build --tag ${{ env.IMAGE_NAME }}:latest
-          podman push ${{ env.IMAGE_NAME }}:latest
+          ansible-builder build --tag $IMAGE_TAG
+          podman push $IMAGE_TAG
+        env:
+          IMAGE_TAG: "${{ env.IMAGE_NAME }}:latest"
