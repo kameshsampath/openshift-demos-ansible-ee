@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.0.2](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.0.1...v0.0.2) (2021-04-08)
+
+
+### Bug Fixes
+
+* bump rosa-demos roles version ([a1af7e9](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/commit/a1af7e9243f63d7dd5637e8ca0655509bb31d59f))
+
 ### [0.0.1](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.0.0...v0.0.1) (2021-04-01)
 
 
