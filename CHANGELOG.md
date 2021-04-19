@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.1](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.1.0...v0.1.1) (2021-04-19)
+
+
+### Bug Fixes
+
+* revert GitHub Workflow ([966cd5e](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/commit/966cd5eeeb0cd4785e53647b31b4eed910783e7c))
+
 ## [0.1.0](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.0.2...v0.1.0) (2021-04-19)
 
 
