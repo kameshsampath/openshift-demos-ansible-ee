@@ -18,7 +18,7 @@ additional_build_steps:
     && wget -O awscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" \
     && unzip awscliv2.zip \
     && ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update \
-    && wget -O/usr/local/bin/rosa https://github.com/openshift/rosa/releases/download/v1.0.2/rosa-linux-amd64 \
+    && wget -O/usr/local/bin/rosa https://github.com/openshift/rosa/releases/download/v1.0.5/rosa-linux-amd64 \
     && wget -O/usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.6.3/yq_linux_amd64 \
     && wget -O/usr/local/bin/self-hosted-linux https://github.com/kameshsampath/ansible-role-rosa-demos/raw/master/bin/self-hosted-linux \
     && chmod +x /usr/local/bin/oc /usr/local/bin/kubectl /usr/local/bin/rosa /usr/local/bin/yq /usr/local/bin/self-hosted-linux \
