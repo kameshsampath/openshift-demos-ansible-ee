@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.0](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.0.2...v0.1.0) (2021-04-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* use kameshsampath.demos collections over role
+
+### Features
+
+* use kameshsampath.demos collections over role ([8493489](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/commit/8493489b4dba41263171a5ece1ccb7a40b809e13))
+
 ### [0.0.2](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.0.1...v0.0.2) (2021-04-08)
 
 
