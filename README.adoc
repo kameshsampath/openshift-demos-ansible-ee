@@ -1,6 +1,6 @@
 = OpenShift Demos Ansible Execution Environment
 
-Set of Ansible scripts and execution environment that can be used to setup AWS resources that will be used as part of the ROSA demos.
+Set of Ansible scripts and execution environment that can be used to set up OpenShift and underlying cloud provider resources.
 
 == Building Execution Environment 
 
