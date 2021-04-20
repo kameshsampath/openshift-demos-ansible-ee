@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.2](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.1.1...v0.1.2) (2021-04-20)
+
+
+### Bug Fixes
+
+* add community.general to the dependencies and remove ansible from requirements ([da136bd](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/commit/da136bda833ac30456defe7143061659c19d3c3b))
+
 ### [0.1.1](https://www.github.com/kameshsampath/openshift-demos-ansible-ee/compare/v0.1.0...v0.1.1) (2021-04-19)
 
 
